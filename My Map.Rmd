@@ -1,0 +1,27 @@
+---
+title: "My Map"
+author: "Tom Osuchowski"
+date: "1/8/2022"
+output: html_document
+---
+
+
+
+
+```{r, echo = FALSE }
+knitr::opts_chunk$set(echo = FALSE)
+place <- c("Giza Pyramids", "Baruch College", "Daniel K. Inouye International Airport, Honolulu,HI ")
+
+place_links <-c("<a href='https://www.latlong.net/c/?lat=30.021530&long=31.071171'>, <a href=' https://www.latlong.net/c/?lat=40.740159&long=-73.98338'>, <a href='https://www.latlong.net/c/?lat=21.3186&long=-157.9253'>")
+
+lat <- c(30.021530, 40.740159, 21.3186)
+lng <- c(31.071171, -73.98338,-157.9253)
+
+
+df <- data.frame(place, place_links, lat, lng)
+library(leaflet)
+df %>%
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(lat=lat, lng=lng, popup=place, clusterOptions=markerClusterOptions)
+```
